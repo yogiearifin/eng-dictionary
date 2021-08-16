@@ -48,12 +48,17 @@ function App() {
         </div>
       ) : definition.length ? (
         definition &&
-        definition.map((item: any, index: number) => {
+        definition.map((item: dictionary, index: number) => {
           return (
             <div key={index}>
-              <h1>{item.word}</h1>
+              <Cards
+                word={item.word}
+                origin={item.origin}
+                meanings={item.meanings}
+                phonetic={item.phonetic}
+                phonetics={item.phonetics}
+              />
             </div>
-            // <Cards />
           );
         })
       ) : null}

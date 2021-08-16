@@ -10,7 +10,7 @@ export const Cards: React.FC<dictionary> = ({
   return (
     <div>
       <h1>{word}</h1>
-      <p>Origin: {origin}</p>
+      {origin ? <p>Origin: {origin}</p> : null}
       {phonetic ? <p style={{ fontWeight: "bold" }}>{phonetic}</p> : null}
       {phonetics
         ? phonetics.map((item: phonetics, index: number) => {
@@ -41,34 +41,36 @@ export const Cards: React.FC<dictionary> = ({
                     <li style={{ fontStyle: "italic" }} key={idx}>
                       {def.definition}
                     </li>
-                    <p>
-                      Antonyms:
-                      {def.antonyms
-                        ? def.antonyms.map((ant: string, idx: number) => {
-                            return (
-                              <span key={idx}>
-                                {idx === def?.antonyms?.length - 1
-                                  ? `${ant}`
-                                  : `${ant},`}
-                              </span>
-                            );
-                          })
-                        : "none"}
-                    </p>
-                    <p>
-                      Synonyms:
-                      {def.synonyms
-                        ? def.synonyms.map((syn: string, idx: number) => {
-                            return (
-                              <span key={idx}>
-                                {idx === def?.synonyms?.length - 1
-                                  ? `${syn}`
-                                  : `${syn},`}
-                              </span>
-                            );
-                          })
-                        : "none"}
-                    </p>
+
+                    {def.antonyms.length ? (
+                      <p>
+                        Antonyms:
+                        {def.antonyms.map((ant: string, idx: number) => {
+                          return (
+                            <span key={idx}>
+                              {idx === def?.antonyms?.length - 1
+                                ? ` and ${ant}`
+                                : `${ant},`}
+                            </span>
+                          );
+                        })}
+                      </p>
+                    ) : null}
+
+                    {def.synonyms.length ? (
+                      <p>
+                        Synonyms:
+                        {def.synonyms.map((syn: string, idx: number) => {
+                          return (
+                            <span key={idx}>
+                              {idx === def?.synonyms?.length - 1
+                                ? ` and ${syn}`
+                                : `${syn},`}
+                            </span>
+                          );
+                        })}
+                      </p>
+                    ) : null}
                   </div>
                 );
               })}

@@ -22,7 +22,3 @@ export interface dictionary {
   origin?: string | any;
   meanings?: meanings[] | any;
 }
-
-export interface propsCard {
-  definition: dictionary[];
-}
