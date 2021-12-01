@@ -15,7 +15,7 @@ export const Cards: React.FC<dictionary> = ({
       {phonetics
         ? phonetics.map((item: phonetics, index: number) => {
             return (
-              <div>
+              <div key={index}>
                 <p style={{ fontStyle: "italic" }}>{item.text}</p>
                 {item.audio ? (
                   <a
@@ -37,7 +37,7 @@ export const Cards: React.FC<dictionary> = ({
               <p>Part Of Speech : {item.partOfSpeech}</p>
               {item.definitions.map((def: definitions, idx: number) => {
                 return (
-                  <div>
+                  <div key={idx}>
                     <li style={{ fontStyle: "italic" }} key={idx}>
                       {def.definition}
                     </li>
@@ -49,7 +49,7 @@ export const Cards: React.FC<dictionary> = ({
                           return (
                             <span key={idx}>
                               {idx === def?.antonyms?.length - 1
-                                ? ` and ${ant}`
+                                ? ` and ${ant}.`
                                 : `${ant},`}
                             </span>
                           );
@@ -64,7 +64,7 @@ export const Cards: React.FC<dictionary> = ({
                           return (
                             <span key={idx}>
                               {idx === def?.synonyms?.length - 1
-                                ? ` and ${syn}`
+                                ? ` and ${syn}.`
                                 : `${syn},`}
                             </span>
                           );

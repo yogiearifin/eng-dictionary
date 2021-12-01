@@ -1,5 +1,6 @@
 import "./App.css";
-import { TextField } from "@material-ui/core";
+import { TextField, Container, InputAdornment } from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
 import React, { useState } from "react";
 import axios from "axios";
 import { dictionary } from "./types/types";
@@ -7,6 +8,7 @@ import { Cards } from "./components/card";
 
 function App() {
   const [definition, setDefinition] = useState<dictionary[]>([]);
+  console.log(definition);
   console.log("definition", definition);
   const [input, setInput] = useState<string>("");
   const [error, setError] = useState<boolean>(false);
@@ -33,7 +35,7 @@ function App() {
     }
   };
   return (
-    <div className="App">
+    <Container className="App">
       <h1>English Dictionary App</h1>
       <TextField
         variant="standard"
@@ -41,6 +43,18 @@ function App() {
         onChange={(e) => onInput(e)}
         onKeyPress={(e) => searchDefinition(e)}
         value={input}
+        data-testid="input-word"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment
+              position="end"
+              onClick={() => getDefinition(input)}
+              data-testid="search-icon"
+            >
+              <SearchIcon />
+            </InputAdornment>
+          ),
+        }}
       />
       {error ? (
         <div>
@@ -62,7 +76,7 @@ function App() {
           );
         })
       ) : null}
-    </div>
+    </Container>
   );
 }
 
