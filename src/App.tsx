@@ -42,9 +42,10 @@ function App() {
         placeholder="enter your word here"
         onChange={(e) => onInput(e)}
         onKeyPress={(e) => searchDefinition(e)}
+        onSubmit={() => getDefinition(input)}
         value={input}
-        data-testid="input-word"
         InputProps={{
+          ...({ ["data-testid"]: "input-search" } as any),
           endAdornment: (
             <InputAdornment
               position="end"
